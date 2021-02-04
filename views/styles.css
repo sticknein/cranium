@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    color: #222;
+    background: url('./img/bg.jpg');
+    text-align: center;
+}
+.navbar {
+    padding: .8rem;
+    background: url('./img/bg.jpg');    
+}
+.navbar-nav {
+    padding-right: 20px;
+}
+.table-header {
+    font-size: 200%;
+}
+.events-table {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}

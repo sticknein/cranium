@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cranium</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="../styles.css" rel="stylesheet">
+</head>
+<body>
+    
+<!--NavBar-->
+<nav class='navbar navbar-expand-md navbar-light bg-light sticky-top'>
+<div class='containter-fluid'>
+    <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarResponsive'>
+        <span class='navbar-toggler-icon'></span>
+    </button>
+    <div class='collapse navbar-collapse' id='navbarResponsive'>
+        <ul class='navbar-nav ml-auto'>
+            <li class='nav-item active'>
+                <a class='nav-link' href='/'>Home</a>
+            </li>
+            <li class='nav-item active'>
+                <a class='nav-link' href='/events'>Events</a>
+            </li>
+            <li class='nav-item active'>
+                <a class='nav-link' href='/profile'>Profile</a>
+            </li>
+            <!-- <li class='nav-item active'>
+                <a class='nav-link' href='/cart'>Cart</a>
+            </li> -->
+        </ul>
+    </div>
+</div>
+</nav>
+
+<h1>Events</h1>
+
+<br></br>
+
+        <table class='events-table'>
+            <tr class='table-header'>
+                <th>Event</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td><a href='/events/<%=events[0].id%>'><%=events[0].name%></a></td>
+                <td><%= events[0].date %></td>
+                <td><a class='btn btn-outline-dark btn-lg' href='/purchase_tickets/<%=events[0].id%>'>Tickets</a>
+            </tr>
+            <tr>
+                <td><a href='/events/<%=events[1].id%>'><%=events[1].name%></a></td>
+                <td><%= events[1].date %></td>
+                <td><a class='btn btn-outline-dark btn-lg' href='/purchase_tickets/<%=events[1].id%>'>Tickets</a>
+            </tr>
+            <tr>
+                <td><a href='/events/<%=events[2].id%>'><%=events[2].name%></a></td>
+                <td><%= events[2].date %></td>
+                <td><a class='btn btn-outline-dark btn-lg' href='/purchase_tickets/<%=events[2].id%>'>Tickets</a>
+            </tr>
+            <tr>
+                <td><a href='/events/<%=events[3].id%>'><%=events[3].name%></a></td>
+                <td><%= events[3].date %></td>
+                <td><a class='btn btn-outline-dark btn-lg' href='/purchase_tickets/<%=events[3].id%>'>Tickets</a>
+            </tr>
+            <tr>
+                <td><a href='/events/<%=events[4].id%>'><%=events[4].name%></a></td>
+                <td><%= events[4].date %></td>
+                <td><a class='btn btn-outline-dark btn-lg' href='/purchase_tickets/<%=events[4].id%>'>Tickets</a>
+            </tr>
+            <tr>
+                <td><a href='/events/<%=events[5].id%>'><%=events[5].name%></a></td>
+                <td><%= events[5].date %></td>
+                <td><a class='btn btn-outline-dark btn-lg' href='/purchase_tickets/<%=events[5].id%>'>Tickets</a>
+            </tr>
+            <tr>
+                <td><a href='/events/<%=events[6].id%>'><%=events[6].name%></a></td>
+                <td><%= events[6].date %></td>
+                <td><a class='btn btn-outline-dark btn-lg' href='/purchase_tickets/<%=events[6].id%>'>Tickets</a>
+            </tr>
+        </table>
+</body>
+</html>
