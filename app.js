@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
@@ -8,9 +9,8 @@ const TWO_HOURS = 1000 * 60 * 60 * 2;
 const {
     PORT = 3000,
     NODE_ENV = 'development',
-
     SESS_NAME = 'sid',
-    SESS_SECRET = 'dd53ax9i2iauj56x90p2d',
+    SESS_SECRET = process.env.SESS_SECRET,
     SESS_LIFETIME = TWO_HOURS
 } = process.env 
 

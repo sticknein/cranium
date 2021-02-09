@@ -1,12 +1,16 @@
 const Pool = require('pg').Pool
 const bcrypt = require('bcrypt');
 
+// const pool = new Pool ({
+//     user: 'nick',
+//     host: 'localhost',
+//     database: 'Cranium',
+//     password: 'password',
+//     port: 5432,
+// })
+
 const pool = new Pool ({
-    user: 'nick',
-    host: 'localhost',
-    database: 'Cranium',
-    password: 'password',
-    port: 5432,
+    connectionString: process.env.DATABASE_URL
 })
 
 const getUserById = (user_id, callback) => {
