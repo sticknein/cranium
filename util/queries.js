@@ -10,7 +10,10 @@ const bcrypt = require('bcrypt');
 // })
 
 const pool = new Pool ({
-    connectionString: process.env.DATABASE_URL
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+      }
 })
 
 const getUserById = (user_id, callback) => {
