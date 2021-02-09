@@ -10,7 +10,7 @@ const {
     PORT = 3000,
     NODE_ENV = 'development',
     SESS_NAME = 'sid',
-    SESS_SECRET = process.env.SESS_SECRET,
+    SESS_SECRET = 'dd53ax9i2iauj56x90p2d',
     SESS_LIFETIME = TWO_HOURS
 } = process.env 
 
