@@ -1,19 +1,16 @@
 const Pool = require('pg').Pool
 const bcrypt = require('bcrypt');
 
-// const pool = new Pool ({
-//     user: 'nick',
-//     host: 'localhost',
-//     database: 'Cranium',
-//     password: 'password',
-//     port: 5432,
-// })
+let ssl = undefined;
+if (process.env.NODE_ENV === 'production') {
+    ssl = {
+        rejectUnauthorized: false
+      }
+}
 
 const pool = new Pool ({
     connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false
-      }
+    ssl: ssl
 })
 
 const getUserById = (user_id, callback) => {
@@ -46,28 +43,14 @@ const registerUser = async (req,res) => {
         if (user) {
             res.redirect.login
         } else {
-            registerUser(req, res)
+            pool.query('INSERT INTO users (last_name, first_name, email, password) VALUES ($1, $2, $3, $4)', [last_name, first_name, email, hash], (error) => {
+                if (error) {
+                    throw error
+                } 
+                login(req, res);
+            })
         }
-    })
-
-    pool.query('INSERT INTO users (last_name, first_name, email, password) VALUES ($1, $2, $3, $4)', [last_name, first_name, email, hash], (error) => {
-        if (error) {
-            throw error
-        }
-        res.status(201).send(`
-            <h1>Welcome to Cranium ${first_name}!</h1>
-
-            <div>
-                <form method='get' action='/profile'>
-                    <button>Profile</button>
-                </form>
-                <form method='get' action='/events'>
-                    <button>Events</button>
-                </form>
-            </div>
-        `)
-    })
-    login(req, res)
+    })  
 }
 
 const login = (req, res) => {
