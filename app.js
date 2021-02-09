@@ -37,6 +37,8 @@ app.use(session({
 
 app.set('view engine', 'ejs');
 
+app.set('trust proxy', 1);
+
 app.use(express.static('views'));
 
 const loggedOutRedirect = (req, res, next) => {
