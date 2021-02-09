@@ -63,9 +63,14 @@ const login = (req, res) => {
             if (results.rows.length > 0 && password) {
                 req.session.userId = results.rows[0].id;
                 const user = results.rows[0];
+                console.log(password)
+                console.log(user)
+                
                 const validPass = bcrypt.compareSync(password, user.password);
+                console.log(validPass)
                 if (validPass) {
                     return res.redirect('/profile')
+                    
                 }
             }
             res.redirect('/login')
