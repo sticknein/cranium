@@ -56,16 +56,14 @@ const registerUser = async (req,res) => {
 const login = (req, res) => {
     const {email, password} = req.body;
     if (email) {
-        pool.query('SELECT id FROM users WHERE email = $1', [email], (error, results) => {
+        pool.query('SELECT * FROM users WHERE email = $1', [email], (error, results) => {
             if (error) {
                 throw error
             }
             if (results.rows.length > 0 && password) {
                 req.session.userId = results.rows[0].id;
                 const user = results.rows[0];
-                const validPass = bcrypt.compare(password, user.hash, (error, results) => {
-                    return true;
-                })
+                const validPass = bcrypt.compareSync(password, user.password);
                 if (validPass) {
                     return res.redirect('/profile')
                 }
