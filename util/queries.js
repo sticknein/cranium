@@ -77,7 +77,7 @@ const login = (req, res) => {
             if (error) {
                 throw error
             }
-            if (results.rows.length > 0, password) {
+            if (results.rows.length > 0 && password) {
                 req.session.userId = results.rows[0].id;
                 const user = results.rows[0];
                 const validPass = bcrypt.compare(password, user.hash, (error, results) => {
