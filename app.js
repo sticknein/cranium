@@ -40,6 +40,8 @@ app.set('view engine', 'ejs');
 app.use(express.static('views'));
 
 const loggedOutRedirect = (req, res, next) => {
+    console.log(req.session)
+    console.log('HOOORRNNYYYYY!!!!!')
     if (!req.session.userId) {
         res.redirect('/login')
     } else {
@@ -62,6 +64,7 @@ app.get('/', (req, res) => {
 
 app.get('/profile', loggedOutRedirect, (req, res) => {
     const user_id = req.session.userId
+    console.log(user_id)
     db.getUserById(user_id, (results) => {
         const user = results.rows[0];
         res.render('profile', {user: user});
