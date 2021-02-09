@@ -70,7 +70,6 @@ const login = (req, res) => {
                 console.log(validPass)
                 if (validPass) {
                     return res.redirect('/profile')
-                    
                 }
             }
             res.redirect('/login')
