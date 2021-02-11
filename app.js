@@ -42,8 +42,6 @@ app.set('trust proxy', 1);
 app.use(express.static('views'));
 
 const loggedOutRedirect = (req, res, next) => {
-    console.log(req.session)
-    console.log('HOOORRNNYYYYY!!!!!')
     if (!req.session.userId) {
         res.redirect('/login')
     } else {
@@ -66,7 +64,6 @@ app.get('/', (req, res) => {
 
 app.get('/profile', loggedOutRedirect, (req, res) => {
     const user_id = req.session.userId
-    console.log(user_id)
     db.getUserById(user_id, (results) => {
         const user = results.rows[0];
         res.render('profile', {user: user});
@@ -99,7 +96,7 @@ app.get('/events/*', (req, res) => {
     })
 })
 
-app.get('/purchase_tickets/*', (req, res) => {
+app.get('/purchase_tickets/*', loggedOutRedirect, (req, res) => {
     
     const event_id = req.path.split('/').pop()
 
@@ -114,9 +111,28 @@ app.get('/purchase_tickets/*', (req, res) => {
     })
 })
 
+app.get('/create', loggedOutRedirect, (req, res) => {
+    if (req.session.userId === 1) {
+        res.render('create');
+    } else {
+        app.post('/logout', loggedOutRedirect, (req, res) => {
+            req.session.destroy(err => {
+                if (err) {
+                    return res.redirect('/profile')
+                }
+        
+                res.clearCookie(SESS_NAME)
+                res.redirect('/login')
+            })
+        })
+    }
+})
+
 app.post('/login', db.login)
 
 app.post('/register', db.registerUser)
+
+app.post('/create', db.createEvent)
 
 app.post('/logout', loggedOutRedirect, (req, res) => {
     req.session.destroy(err => {
